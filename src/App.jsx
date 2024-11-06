@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     window.addEventListener('message', (message) => {
-      if(message.origin.includes('http://localhost:5173')) {
+      if(message.origin.includes('https://research-iframe-parent.vercel.app/')) {
         alert(JSON.stringify(message.data))
       }
       setMess(JSON.stringify(message.data))
