@@ -26,7 +26,6 @@ function App() {
       setCount((prev) => prev + 1);
     }
   };
-
   useEffect(() => {
     window.addEventListener('message', (message) => {
       if(message.origin.includes('https://research-iframe-parent.vercel.app/')) {
