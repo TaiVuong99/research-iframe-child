@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [mess, setMess] = useState("")
+  const [mess, setMess] = useState("");
   const sendCount = () => {
     if (count === 5) {
       window.parent.postMessage(
@@ -26,33 +26,38 @@ function App() {
       setCount((prev) => prev + 1);
     }
   };
+  const openWindow = () => {
+    window.open("abc", "_self");
+  };
   useEffect(() => {
-    window.addEventListener('message', (message) => {
-      console.log('message',message)
-      if(message.origin.includes('https://research-iframe-parent.vercel.app')) {
-        alert(JSON.stringify(message.data))
+    window.addEventListener("message", (message) => {
+      console.log("message", message);
+      if (
+        message.origin.includes("https://research-iframe-parent.vercel.app")
+      ) {
+        alert(JSON.stringify(message.data));
       }
-      setMess(JSON.stringify(message.data))
-    })
-  }, [])
+      setMess(JSON.stringify(message.data));
+    });
+  }, []);
 
-  
   return (
     <>
-      <div>
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-          <img src={reactLogo} className="logo react" alt="React logo" />
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={sendCount}>count is {count}</button>
-        <p>
-          {mess}
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click + to 5
-      </p>
+      {!window.location.href.includes("abc") && (
+        <>
+          <div>
+            <img src={viteLogo} className="logo" alt="Vite logo" />
+            <img src={reactLogo} className="logo react" alt="React logo" />
+          </div>
+          <h1>Vite + React</h1>
+          <div className="card">
+            <button onClick={sendCount}>count is {count}</button>
+            <button onClick={openWindow}>open window </button>
+            <p>{mess}</p>
+          </div>
+          <p className="read-the-docs">Click + to 5</p>
+        </>
+      )}
     </>
   );
 }
