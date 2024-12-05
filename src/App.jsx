@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -43,21 +44,22 @@ function App() {
 
   return (
     <>
-      {!window.location.href.includes("abc") && (
-        <>
-          <div>
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-            <img src={reactLogo} className="logo react" alt="React logo" />
-          </div>
-          <h1>Vite + React</h1>
-          <div className="card">
-            <button onClick={sendCount}>count is {count}</button>
-            <button onClick={openWindow}>open window </button>
-            <p>{mess}</p>
-          </div>
-          <p className="read-the-docs">Click + to 5</p>
-        </>
-      )}
+      <Routes>
+        <Route path="/abc" element={<div>abc</div>}></Route>
+      </Routes>
+      <>
+        <div>
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </div>
+        <h1>Vite + React</h1>
+        <div className="card">
+          <button onClick={sendCount}>count is {count}</button>
+          <button onClick={openWindow}>open window </button>
+          <p>{mess}</p>
+        </div>
+        <p className="read-the-docs">Click + to 5</p>
+      </>
     </>
   );
 }
